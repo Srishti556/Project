@@ -1,0 +1,33 @@
+name: Job2
+
+on:
+  workflow_dispatch: # This event allows manual triggering
+  
+jobs:
+  configure:
+    runs-on: Ubuntu-latest
+    inputs:
+        Configuration:
+               description: 'Configuration'
+               required: true
+               default: 'Hello'       
+        ConfigCode:
+               description: ConfigCode
+               required: false
+               default: 10          
+        ConfigType:
+               description: 'ConfigType'
+               required: true
+               default: 'Prod'
+               options: 
+                   - 'QA'
+                   - 'Prod'
+       Print:
+              description: 'Print'
+              required: false
+       steps:
+              if[ !ConfigCode ] then
+              echo '$INPUT_Configuration,$INPUT_ConfigType'
+              else
+              echo '$INPUT_Configuration,$INPUT_ConfigCode,$INPUT_ConfigType'
+              
