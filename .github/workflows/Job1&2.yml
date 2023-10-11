@@ -9,6 +9,7 @@ on:
      ConfigCode:
        description: 'ConfigCode'
        required: false
+       default: '10'
      ConfigType:
        description: 'ConfigType'
        required: true
@@ -19,13 +20,17 @@ on:
          - 'QA'
 
 jobs:
- configure_Print:
+ configure:
    runs-on: ubuntu-latest
 
    steps:
    - name: Print Hello World
      run: echo "Hello World"
-   
+ Print: 
+   needs: configure
+   runs-on: ubuntu-latest
+   if: ${{ needs.print_hello.result == 'success' }}
+   steps:
    - name: Prepare Configuration
      run: |
        if [[ -n "${{inputs.ConfigCode}}" ]]; then
