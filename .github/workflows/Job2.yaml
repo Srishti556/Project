@@ -1,30 +1,44 @@
 name: Job2
-
 on:
-  workflow_dispatch: # This event allows manual triggering
-  inputs:
-        Configuration:
-               description: 'Configuration'
-               required: true
-               default: 'Hello'       
-        ConfigCode:
-               description: ConfigCode
-               required: false
-               default: 10          
-        ConfigType:
-               description: 'ConfigType'
-               required: true
-               default: 'Prod'
-               options: 
-                   - 'QA'
-                   - 'Prod'
-  
+ workflow_dispatch:
+   inputs:
+     configuration:
+       description: 'Configuration'
+       required: true
+       default: 'Hello'
+     configCode:
+       description: 'ConfigCode'
+       required: false
+       default: ''
+     configType:
+       description: 'ConfigType'
+       required: true
+       default: 'Prod'
+       options:
+         - 'Staging'
+         - 'Prod'
+         - 'QA'
+
 jobs:
-  configure:
-    runs-on: Ubuntu-latest
-    steps:
-          if[ !ConfigCode ] then
-          echo '$INPUT_Configuration,$INPUT_ConfigType'
-          else
-          echo '$INPUT_Configuration,$INPUT_ConfigCode,$INPUT_ConfigType'
-              
+ configure:
+   runs-on: ubuntu-latest
+
+   steps:
+   - name: Prepare Configuration
+     id: config
+     run: |
+       if [[ -n "$INPUT_configCode" ]]; then
+         formattedConfig="$INPUT_configuration, $INPUT_configCode, $INPUT_configType"
+       else
+         formattedConfig="$INPUT_configuration, $INPUT_configType"
+       fi
+       echo "Formatted Configuration: $formattedConfig"
+
+   - name: Set Output Variable
+     id: setOutput
+     run: echo "::set-output name=formattedConfig::$formattedConfig"
+
+   - name: Final Step
+     run: |
+       formattedConfig="${{ steps.setOutput.outputs.formattedConfig }}"
+       echo "Final Configuration: $formattedConfig"
