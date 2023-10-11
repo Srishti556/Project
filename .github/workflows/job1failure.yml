@@ -25,7 +25,7 @@ jobs:
 
    steps:
    - name: Print Hello World
-     run: echo "Hello World"
+     run: exit 1
  Configure: 
    needs: Print
    runs-on: ubuntu-latest
