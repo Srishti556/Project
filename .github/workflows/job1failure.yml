@@ -2,27 +2,15 @@ name: Combined Job failCase
 on:
  workflow_dispatch:
    inputs:
-     Configuration:
-       description: 'Configuration'
+     runJob1:
+       description: 'Run Job 1'
        required: true
-       default: 'Hello'
-     ConfigCode:
-       description: 'ConfigCode'
-       required: false
-       default: '10'
-     ConfigType:
-       description: 'ConfigType'
-       required: true
-       default: 'Prod'
-       options:
-         - 'Staging'
-         - 'Prod'
-         - 'QA'
+       default: 'false'
 
 jobs:
  Print:
    runs-on: ubuntu-latest
-
+   if: ${{ github.event.inputs.runJob1 == 'true' }}
    steps:
    - name: Print Hello World
      run: exit 1
@@ -34,9 +22,4 @@ jobs:
    - name: Prepare Configuration
      if: ${{ failure() }}
      run: |
-       if [[ -n "${{inputs.ConfigCode}}" ]]; then
-         formattedConfig="${{inputs.Configuration}} - ${{inputs.ConfigCode}} - ${{inputs.ConfigType}}"
-       else
-         formattedConfig="${{inputs.Configuration}} - ${{inputs.ConfigType}}"
-       fi
-       echo "Formatted Configuration: $formattedConfig"
+       echo "Job 2"
