@@ -31,6 +31,8 @@ jobs:
        formattedConfig="${{ inputs.configuration }} , "
        if [[ -n "${{ inputs.configCode }}" ]]; then
        formattedConfig= "$formattedConfig${{ inputs.configCode }} ,"
+       else 
+       formattedConfig= "$formattedConfig"
        fi
        formattedConfig= "$formattedConfig${{ inputs.configType }}"
        echo "Formatted Configuration: $formattedConfig"
