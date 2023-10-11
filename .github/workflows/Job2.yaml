@@ -9,7 +9,7 @@ on:
      configCode:
        description: 'ConfigCode'
        required: false
-       default: ''
+       default: '10'
      configType:
        description: 'ConfigType'
        required: true
@@ -33,12 +33,3 @@ jobs:
          formattedConfig="$INPUT_configuration, $INPUT_configType"
        fi
        echo "Formatted Configuration: $formattedConfig"
-
-   - name: Set Output Variable
-     id: setOutput
-     run: echo "::set-output name=formattedConfig::$formattedConfig"
-
-   - name: Final Step
-     run: |
-       formattedConfig="${{ steps.setOutput.outputs.formattedConfig }}"
-       echo "Final Configuration: $formattedConfig"
