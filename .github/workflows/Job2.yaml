@@ -27,7 +27,7 @@ jobs:
    - name: Prepare Configuration
      id: config
      run: |
-       if [[ -n "$INPUT_configCode" ]]; then
+       if [[ -n "$configCode" ]]; then
          formattedConfig="$configuration, $configCode, $configType"
        else
          formattedConfig="$configuration, $configType"
