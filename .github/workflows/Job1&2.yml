@@ -29,9 +29,10 @@ jobs:
  Configure: 
    needs: Print
    runs-on: ubuntu-latest
-   if: ${{ needs.Print.result == 'success' }}
+   
    steps:
    - name: Prepare Configuration
+     if: ${{ success() }}
      run: |
        if [[ -n "${{inputs.ConfigCode}}" ]]; then
          formattedConfig="${{inputs.Configuration}} - ${{inputs.ConfigCode}} - ${{inputs.ConfigType}}"
