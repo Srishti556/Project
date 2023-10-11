@@ -26,11 +26,11 @@ jobs:
    - name: Print Hello World
      run: echo "Hello World"
    
-   - name: Prepare Configuration - ${{ inputs.configuration }}
+   - name: Prepare Configuration
      run: |
        formattedConfig="${{ inputs.configuration }} - "
        if [[ -n "${{ inputs.configCode }}" ]]; then
-       formattedConfig="$formattedConfig${{ inputs.configCode }} - "
+       formattedConfig= $formattedConfig , " ${{ inputs.configCode }} ,"
        fi
-       formattedConfig="$formattedConfig${{ inputs.configType }}"
-       echo "Formatted Configuration: $formattedConfig"
+       formattedConfig= $formattedConfig , ${{ inputs.configType }}
+       echo "Formatted Configuration: \"$formattedConfig\""
