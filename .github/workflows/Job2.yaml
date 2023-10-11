@@ -2,15 +2,15 @@ name: Job2
 on:
  workflow_dispatch:
    inputs:
-     configuration:
+     Configuration:
        description: 'Configuration'
        required: true
        default: 'Hello'
-     configCode:
+     ConfigCode:
        description: 'ConfigCode'
        required: false
        default: '10'
-     configType:
+     ConfigType:
        description: 'ConfigType'
        required: true
        default: 'Prod'
@@ -27,9 +27,9 @@ jobs:
    - name: Prepare Configuration
      id: config
      run: |
-       if [[ -n "$configCode" ]]; then
-         formattedConfig="$configuration - $configCode - $configType"
+       if [[ -n "$ConfigCode" ]]; then
+         formattedConfig="$Configuration - $ConfigCode - $ConfigType"
        else
-         formattedConfig="$configuration - $configType"
+         formattedConfig="$Configuration - $ConfigType"
        fi
        echo "Formatted Configuration: $formattedConfig"
