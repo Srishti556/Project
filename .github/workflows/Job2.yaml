@@ -28,8 +28,8 @@ jobs:
      id: config
      run: |
        if [[ -n "$configCode" ]]; then
-         formattedConfig="$configuration, $configCode, $configType"
+         formattedConfig="$configuration - $configCode - $configType"
        else
-         formattedConfig="$configuration, $configType"
+         formattedConfig="$configuration - $configType"
        fi
        echo "Formatted Configuration: $formattedConfig"
