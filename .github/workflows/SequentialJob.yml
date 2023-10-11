@@ -32,6 +32,7 @@ jobs:
    
    steps:
    - name: Prepare Configuration
+     if: ${{ always() }}
      run: |
        if [[ -n "${{inputs.ConfigCode}}" ]]; then
          formattedConfig="${{inputs.Configuration}} - ${{inputs.ConfigCode}} - ${{inputs.ConfigType}}"
