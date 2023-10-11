@@ -1,25 +1,23 @@
 name: Combined Job failCase
 on:
  workflow_dispatch:
-   inputs:
-     runJob1:
-       description: 'Run Job 1'
-       required: true
-       default: 'false'
 
 jobs:
  Print:
-   runs-on: ubuntu-latest
-   if: ${{ github.event.inputs.runJob1 == 'true' }}
+   runs-on: ubuntu-latest 
    steps:
    - name: Print Hello World
-     run: exit 1
- Configure: 
+     run: |
+          echo "This is Job 1"
+          exit 1
+ Configure:
    needs: Print
    runs-on: ubuntu-latest
    
    steps:
+   - name: Check Print status
+     id: job1_status
+     run: echo "Job 1 succeeded"
    - name: Prepare Configuration
-     if: ${{ failure() }}
-     run: |
-       echo "Job 2"
+     if: ${{ steps.job1_status.outcome == 'failure' }}
+     run: echo "Job 2"
