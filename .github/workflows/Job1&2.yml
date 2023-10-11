@@ -28,11 +28,9 @@ jobs:
    
    - name: Prepare Configuration
      run: |
-       formattedConfig="${{ inputs.configuration }} , "
-       if [[ -n "${{ inputs.configCode }}" ]]; then
-       formattedConfig= $formattedConfig"${{ inputs.configCode }} ,"
+       if [[ -n "${{inputs.ConfigCode}}" ]]; then
+         formattedConfig="${{inputs.Configuration}} - ${{inputs.ConfigCode}} - ${{inputs.ConfigType}}"
        else
-       formattedConfig= $formattedConfig
+         formattedConfig="${{inputs.Configuration}} - ${{inputs.ConfigType}}"
        fi
-       formattedConfig= $formattedConfig"${{ inputs.configType }}"
        echo "Formatted Configuration: $formattedConfig"
