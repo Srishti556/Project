@@ -1,4 +1,4 @@
-name: Combined Job failCase
+name: Combined Job pass/fail
 on:
  workflow_dispatch:
    inputs:
