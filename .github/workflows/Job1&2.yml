@@ -9,7 +9,6 @@ on:
      ConfigCode:
        description: 'ConfigCode'
        required: false
-       default: '10'
      ConfigType:
        description: 'ConfigType'
        required: true
