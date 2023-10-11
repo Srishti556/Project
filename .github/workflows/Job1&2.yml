@@ -1,0 +1,38 @@
+name: Combined Job
+on:
+ workflow_dispatch:
+   inputs:
+     configuration:
+       description: 'Configuration'
+       required: true
+       default: 'Hello'
+     configCode:
+       description: 'ConfigCode'
+       required: false
+       default: '10'
+     configType:
+       description: 'ConfigType'
+       required: true
+       default: 'Prod'
+       options:
+         - 'Staging'
+         - 'Prod'
+         - 'QA'
+
+jobs:
+ configure_Print:
+   runs-on: ubuntu-latest
+
+   steps:
+   - name: Print Hello World
+     run: echo "Hello World"
+   
+   - name: Prepare Configuration
+     id: config
+     run: |
+       if [[ -n "$INPUT_configCode" ]]; then
+         formattedConfig="$INPUT_configuration, $INPUT_configCode, $INPUT_configType"
+       else
+         formattedConfig="$INPUT_configuration, $INPUT_configType"
+       fi
+       echo "Formatted Configuration: $formattedConfig"
