@@ -20,16 +20,16 @@ on:
          - 'QA'
 
 jobs:
- configure:
+ Print:
    runs-on: ubuntu-latest
 
    steps:
    - name: Print Hello World
      run: echo "Hello World"
- Print: 
-   needs: configure
+ Configure: 
+   needs: Print
    runs-on: ubuntu-latest
-   if: ${{ needs.print_hello.result == 'success' }}
+   if: ${{ needs.Print.result == 'success' }}
    steps:
    - name: Prepare Configuration
      run: |
