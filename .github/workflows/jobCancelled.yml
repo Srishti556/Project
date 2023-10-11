@@ -29,9 +29,9 @@ jobs:
  Configure: 
    needs: Print
    runs-on: ubuntu-latest
+   if: ${{ cancelled() }}
    steps:
    - name: Prepare Configuration
-     if: ${{ cancelled() }}
      run: |
        if [[ -n "${{inputs.ConfigCode}}" ]]; then
          formattedConfig="${{inputs.Configuration}} - ${{inputs.ConfigCode}} - ${{inputs.ConfigType}}"
