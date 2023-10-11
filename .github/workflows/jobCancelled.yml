@@ -31,7 +31,7 @@ jobs:
    runs-on: ubuntu-latest
    steps:
    - name: Prepare Configuration
-     if: ${{ failure() }}
+     if: ${{ cancelled() }}
      run: |
        if [[ -n "${{inputs.ConfigCode}}" ]]; then
          formattedConfig="${{inputs.Configuration}} - ${{inputs.ConfigCode}} - ${{inputs.ConfigType}}"
