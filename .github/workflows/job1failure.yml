@@ -1,0 +1,41 @@
+name: Combined Job
+on:
+ workflow_dispatch:
+   inputs:
+     Configuration:
+       description: 'Configuration'
+       required: true
+       default: 'Hello'
+     ConfigCode:
+       description: 'ConfigCode'
+       required: false
+       default: '10'
+     ConfigType:
+       description: 'ConfigType'
+       required: true
+       default: 'Prod'
+       options:
+         - 'Staging'
+         - 'Prod'
+         - 'QA'
+
+jobs:
+ Print:
+   runs-on: ubuntu-latest
+
+   steps:
+   - name: Print Hello World
+     run: echo "Hello World"
+ Configure: 
+   needs: Print
+   runs-on: ubuntu-latest
+   if: ${{ needs.Print.result != 'success' }}
+   steps:
+   - name: Prepare Configuration
+     run: |
+       if [[ -n "${{inputs.ConfigCode}}" ]]; then
+         formattedConfig="${{inputs.Configuration}} - ${{inputs.ConfigCode}} - ${{inputs.ConfigType}}"
+       else
+         formattedConfig="${{inputs.Configuration}} - ${{inputs.ConfigType}}"
+       fi
+       echo "Formatted Configuration: $formattedConfig"
