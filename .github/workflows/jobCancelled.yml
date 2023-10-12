@@ -1,9 +1,11 @@
 name: Combined Job cancelled
 on:
- workflow_run:
-  workflows: ["jobCancelled"]
-  types:
-   - workflow_run
+ workflow_dispatch:
+  inputs:
+   cancelWorkflow:
+     description: 'Cancel Workflow'
+     required: false
+     default: false
    
 jobs:
  Print:
@@ -19,4 +21,9 @@ jobs:
       if: ${{ cancelled() }}
       steps:
       - name: Prepare Configuration
+        if: ${{ inputs.cancelWorkflow == 'true' }}
+        run: exit 1
+        
+      - name: Workflow Cancelled
+        if: ${{ inputs.cancelWorkflow == 'false' }}
         run: echo "JOB 2 when workflow is cancelled."
