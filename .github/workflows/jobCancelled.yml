@@ -1,29 +1,18 @@
-name: Combined Job cancelled
+name: Cancel Workflow
+
 on:
- workflow_dispatch:
-  inputs:
-   cancelWorkflow:
-     description: 'Cancel Workflow'
-     required: false
-     default: 'false'
-   
+  workflow_dispatch:
+    inputs:
+      cancel:
+        description: 'Cancel the main workflow'
+        required: true
+        default: 'false'
+
 jobs:
- Print:
-   runs-on: ubuntu-latest 
-   steps:
-   - name: Print Hello World
-     run: |
-          echo "This is Job 1"
-          exit 1
- Configure:
-      needs: Print
-      runs-on: ubuntu-latest
-      if: ${{ cancelled() }}
-      steps:
-      - name: cancel workflow
-        if: ${{ github.event.inputs.cancelWorkflow == 'true' }}
-        run: echo "##vso[task.setvariable variable=workflow_cancelled]true"
-        
-      - name: Workflow Cancelled Job 2
-        if: ${{ env.workflow_cancelled == 'true' }}
-        run: echo "JOB 2 when workflow is cancelled."
+  cancel_workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cancel Workflow
+        if: ${{ github.event.inputs.cancel == 'true' }}
+        run: echo "Cancelling the main workflow"
