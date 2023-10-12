@@ -1,4 +1,4 @@
-name: C
+name: Canceled Workflow
 on:
  workflow_dispatch:
    
@@ -15,4 +15,4 @@ jobs:
    if: ${{ always() }}
    steps:
    - name: Prepare Configuration
-     run: echo "Job 2 executed weather job 1 fails or succeed."
+     run: echo "Job 2 executed ALWAYS."
