@@ -1,4 +1,4 @@
-name: Canceled Workflow
+name: Canceled Workflows
 on:
  workflow_dispatch:
    
