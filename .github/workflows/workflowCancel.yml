@@ -11,14 +11,13 @@ jobs:
    steps:
      - name: Job 1
        run: |
-         # Your Job 1 steps here
          echo "This is Job 1"
-         exit 1  # This will intentionally fail Job 1
+         exit 1
 
  job2:
    needs: job1
    runs-on: ubuntu-latest
-   if: ${{ github.event.inputs.cancel == 'true' }}
+   if: ${{ inputs.cancel == 'true' }}
    steps:
      - name: Job 2
        run: echo "Job 2 executed when the workflow is canceled"
