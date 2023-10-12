@@ -9,14 +9,14 @@ jobs:
    - name: Print Hello World
      run: echo "This is Job 1"
 
-Job2:
+ Job2:
    needs: Job1
    runs-on: ubuntu-latest 
    steps:
    - name: Print Hello World
      run: exit 1
 
- Job3:
+  Job3:
    needs: [Job1,Job2]
    runs-on: ubuntu-latest
    if: ${{ github.event.Job2.conclusion == 'failure' }}
