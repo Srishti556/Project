@@ -18,6 +18,7 @@ jobs:
    - name: Check Print status
      id: job1_status
      run: echo "Job 1 succeeded"
-   - name: Prepare Configuration
+
      if: ${{ steps.job1_status.outcome == 'failure' }}
-     run: echo "Job 2"
+   - name: Prepare Configuration
+     run: echo "Job 2 when Job 1 has failed."
