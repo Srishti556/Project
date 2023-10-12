@@ -1,0 +1,24 @@
+name: Main Workflow
+on:
+ workflow_run:
+   workflows: ["Cancel Workflow"]
+   types:
+     - completed
+
+jobs:
+ job1:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Job 1
+       run: |
+         # Your Job 1 steps here
+         echo "This is Job 1"
+         exit 1  # This will intentionally fail Job 1
+
+ job2:
+   needs: job1
+   runs-on: ubuntu-latest
+   steps:
+     - name: Job 2
+       if: ${{ github.event.workflow_run.conclusion == 'success' }}
+       run: echo "Job 2 executed when the workflow is canceled"
