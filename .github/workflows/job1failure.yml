@@ -13,12 +13,7 @@ jobs:
  Configure:
    needs: Print
    runs-on: ubuntu-latest
-   
+   if: ${{ failure() }}
    steps:
-   - name: Check Print status
-     id: job1_status
-     run: echo "Job 1 succeeded"
-
-     if: ${{ steps.job1_status.outcome == 'failure' }}
    - name: Prepare Configuration
-     run: echo "Job 2 when Job 1 has failed."
+     run: echo "Job 2 executed weather job 1 fails or succeed."
