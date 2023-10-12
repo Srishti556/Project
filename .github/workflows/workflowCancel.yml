@@ -20,5 +20,5 @@ jobs:
    runs-on: ubuntu-latest
    steps:
      - name: Job 2
-       if: ${{ github.event.workflow_run.conclusion == 'success' }}
+       if: ${{ github.event.inputs.cancel == 'true' }}
        run: echo "Job 2 executed when the workflow is canceled"
