@@ -3,14 +3,14 @@ on:
  workflow_dispatch:
    
 jobs:
- Print:
+ JOB1:
    runs-on: ubuntu-latest
 
    steps:
-   - name: Print Hello World
+   - name: JOB 1
      run: exit 1
- Configure: 
-   needs: Print
+ JOB2: 
+   needs: JOB1
    runs-on: ubuntu-latest
    if: ${{ always() }}
    steps:
