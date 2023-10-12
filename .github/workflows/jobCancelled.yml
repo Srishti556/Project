@@ -5,7 +5,7 @@ on:
    cancelWorkflow:
      description: 'Cancel Workflow'
      required: false
-     default: false
+     default: 'false'
    
 jobs:
  Print:
@@ -20,10 +20,10 @@ jobs:
       runs-on: ubuntu-latest
       if: ${{ cancelled() }}
       steps:
-      - name: Prepare Configuration
+      - name: cancel workflow
         if: ${{ github.event.inputs.cancelWorkflow == 'true' }}
         run: echo "##vso[task.setvariable variable=workflow_cancelled]true"
         
-      - name: Workflow Cancelled
+      - name: Workflow Cancelled Job 2
         if: ${{ env.workflow_cancelled == 'true' }}
         run: echo "JOB 2 when workflow is cancelled."
