@@ -22,14 +22,13 @@ on:
 jobs:
  Print:
    runs-on: ubuntu-latest
-
    steps:
    - name: Print Hello World
      run: echo "Hello World"
+     
  Configure: 
    needs: Print
    runs-on: ubuntu-latest
-   if: ${{ success() }}
    steps:
    - name: Prepare Configuration
      run: |
