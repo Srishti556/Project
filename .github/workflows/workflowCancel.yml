@@ -20,4 +20,5 @@ jobs:
    if: ${{ inputs.cancel == 'true' }}
    steps:
      - name: Job 2
+       if: ${{ inputs.cancel == 'true' }}
        run: echo "Job 2 executed when the workflow is canceled"
