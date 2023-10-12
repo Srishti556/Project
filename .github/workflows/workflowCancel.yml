@@ -17,8 +17,8 @@ jobs:
  job2:
    needs: job1
    runs-on: ubuntu-latest
-   if: ${{ inputs.cancel == 'true' }}
+   if: ${{ github.event.inputs.cancel == 'true' }}
    steps:
      - name: Job 2
-       if: ${{ inputs.cancel == 'true' }}
+       if: ${{ github.event.inputs.cancel == 'true' }}
        run: echo "Job 2 executed when the workflow is canceled"
