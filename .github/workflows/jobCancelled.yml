@@ -21,9 +21,9 @@ jobs:
       if: ${{ cancelled() }}
       steps:
       - name: Prepare Configuration
-        if: ${{ inputs.cancelWorkflow == 'true' }}
-        run: exit 1
+        if: ${{ github.event.inputs.cancelWorkflow == 'true' }}
+        run: echo "##vso[task.setvariable variable=workflow_cancelled]true"
         
       - name: Workflow Cancelled
-        if: ${{ inputs.cancelWorkflow == 'false' }}
+        if: ${{ env.workflow_cancelled == 'true' }}
         run: echo "JOB 2 when workflow is cancelled."
