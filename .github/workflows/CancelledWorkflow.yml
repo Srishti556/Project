@@ -1,4 +1,4 @@
-name: Combined Job pass/fail
+name: C
 on:
  workflow_dispatch:
    
