@@ -14,7 +14,4 @@ jobs:
         uses: ./.github/workflows/Reusable_workflow.yml
         with:
          config-path: ${{ github.event.inputs.config-path }}
-      - name: Display Output
-        run: echo "Output:" ${{ steps.call_reusable.outputs.test}}
-      
-  
+    
