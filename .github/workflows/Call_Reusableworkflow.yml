@@ -3,10 +3,9 @@ name: Call Reusable workflow
 on: 
   workflow_dispatch:
     inputs:
-      configuration:
-         description: 'Configuration'
-         required: true
-         default: 'true'
+     configuration: 
+        type: boolean
+        required: true      
          
 jobs:
    call_reusable:
