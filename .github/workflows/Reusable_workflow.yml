@@ -12,13 +12,14 @@ jobs:
   Reusable-workflow:
     runs-on: ubuntu-latest
     outputs:
-      test: ${{ steps.step1.outputs.test }}
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
     steps:
      - name: set Output1
        id: step1
        run: |
-        if: ${{ input.config-path }} == true; then
-        echo "::set-output name=test:: Hello World True"
+        if: ${{ input.configuration }} == true; then
+        echo "test=hello world true" >> "$GITHUB_OUTPUT"
         else
-        echo "::set-output name=test:: Hello World False"
+        echo "test=hello world false" >> "$GITHUB_OUTPUT"
         fi
