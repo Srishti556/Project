@@ -20,7 +20,7 @@ jobs:
      - name: set Output1
        id: step1
        run: |
-        if: ${{ input.configuration }} == true; then
+        if: ${{ input.configuration }} == 'true'; then
         echo "firstword=hello_world_true" >> "$GITHUB_OUTPUT"
         else
         echo "firstword=hello_world_false" >> "$GITHUB_OUTPUT"
