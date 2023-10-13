@@ -27,5 +27,5 @@ jobs:
         if: ${{ input.configuration }} == true; then
         echo "firstword=hello world true" >> "$GITHUB_OUTPUT"
         else
-        echo "secondword=hello world false" >> "$GITHUB_OUTPUT"
+        echo "firstword=hello world false" >> "$GITHUB_OUTPUT"
         fi
