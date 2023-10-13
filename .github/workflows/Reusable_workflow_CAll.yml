@@ -1,0 +1,10 @@
+name: Call Reusable workflow
+
+on: 
+  workflow_dispatch:
+
+jobs:
+   job-1:
+     uses: ./.github/workflows/Reusable_workflow.yml
+      
+  
