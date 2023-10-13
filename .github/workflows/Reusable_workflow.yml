@@ -2,13 +2,12 @@ name: Reusable workflow
 
 on:
   workflow_call:
-    inputs:
-      configuration:
-        description: 'Configuration'
-        required: true
-        type: string
-    outputs:
-      firstword:
+   inputs:
+     configuration: 
+        type: boolean
+        required: true        
+   outputs:
+     firstword:
         description: "The first output string"
         value: ${{ jobs.Reusable-workflow.outputs.output1 }}
 jobs:
@@ -20,7 +19,7 @@ jobs:
      - name: set Output1
        id: step1
        run: |
-        if: ${{ input.configuration }} == 'true'; then
+        if: ${{ inputs.configuration }} == true; then
         echo "firstword=hello_world_true" >> "$GITHUB_OUTPUT"
         else
         echo "firstword=hello_world_false" >> "$GITHUB_OUTPUT"
