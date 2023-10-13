@@ -2,9 +2,19 @@ name: Call Reusable workflow
 
 on: 
   workflow_dispatch:
-
+    inputs:
+      config-path:
+         description: 'Configuration'
+         required: true
 jobs:
-   job-1:
-     uses: ./.github/workflows/Reusable_workflow.yml
+   call_reusable:
+     runs-on: ubuntu-latest
+     steps:
+      - name: Caller
+        uses: ./.github/workflows/Reusable_workflow.yml
+        with:
+         config-path: ${{ github.event.inputs.config-path }}
+      - name: Display Output
+        run: echo "Output:" ${{ steps.call_reusable.outputs.test}}
       
   
