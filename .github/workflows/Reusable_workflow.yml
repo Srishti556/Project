@@ -4,15 +4,25 @@ on:
   workflow_call:
     inputs:
       config-path:
-        description: Reusable-workflow
         required: true
-        default: 'true'
         type: string
 
 jobs:
-  triage:
+  Reusable-workflow:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
     steps:
-    - uses: actions/labeler@v4
-      with:
-        configuration-path: ${{ inputs.config-path }}
+     - name: set Output1
+       id: step1
+       run: |
+        if: ${{ input.config-path }} == true; then
+        echo "::set-output name=test:: Hello World True"
+        
+     - name: set Output2
+       id: step2
+       run: |
+        if: ${{ input.config-path }} == false; then
+        echo "::set-output name=test:: Hello World False"
+        
