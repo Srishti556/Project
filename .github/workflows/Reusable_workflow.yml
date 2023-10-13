@@ -11,21 +11,17 @@ on:
       firstword:
         description: "The first output string"
         value: ${{ jobs.Reusable-workflow.outputs.output1 }}
-      secondword:
-        description: "The second output string"
-        value: ${{ jobs.Reusable-workflow.outputs.output2 }}
 jobs:
   Reusable-workflow:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.step1.outputs.firstword }}
-      output2: ${{ steps.step2.outputs.secondword }}
     steps:
      - name: set Output1
        id: step1
        run: |
         if: ${{ input.configuration }} == true; then
-        echo "firstword=hello world true" >> "$GITHUB_OUTPUT"
+        echo "firstword=hello_world_true" >> "$GITHUB_OUTPUT"
         else
-        echo "firstword=hello world false" >> "$GITHUB_OUTPUT"
+        echo "firstword=hello_world_false" >> "$GITHUB_OUTPUT"
         fi
