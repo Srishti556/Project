@@ -7,19 +7,25 @@ on:
         description: 'Configuration'
         required: true
         type: string
-
+    outputs:
+      firstword:
+        description: "The first output string"
+        value: ${{ jobs.Reusable-workflow.outputs.output1 }}
+      secondword:
+        description: "The second output string"
+        value: ${{ jobs.Reusable-workflow.outputs.output2 }}
 jobs:
   Reusable-workflow:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.step1.outputs.test }}
-      output2: ${{ steps.step2.outputs.test }}
+      output1: ${{ steps.step1.outputs.firstword }}
+      output2: ${{ steps.step2.outputs.secondword }}
     steps:
      - name: set Output1
        id: step1
        run: |
         if: ${{ input.configuration }} == true; then
-        echo "test=hello world true" >> "$GITHUB_OUTPUT"
+        echo "firstword=hello world true" >> "$GITHUB_OUTPUT"
         else
-        echo "test=hello world false" >> "$GITHUB_OUTPUT"
+        echo "secondword=hello world false" >> "$GITHUB_OUTPUT"
         fi
