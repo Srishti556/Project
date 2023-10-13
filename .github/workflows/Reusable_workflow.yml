@@ -3,7 +3,8 @@ name: Reusable workflow
 on:
   workflow_call:
     inputs:
-      config-path:
+      configuration:
+        description: 'Configuration'
         required: true
         type: string
 
