@@ -11,7 +11,7 @@ jobs:
   Reusable-workflow:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.step1.outputs.test }}
+      test: ${{ steps.step1.outputs.test }}
     steps:
      - name: set Output1
        id: step1
@@ -20,4 +20,4 @@ jobs:
         echo "::set-output name=test:: Hello World True"
         else
         echo "::set-output name=test:: Hello World False"
-        
+        fi
