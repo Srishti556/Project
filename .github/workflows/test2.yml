@@ -1,14 +1,17 @@
-name: Call a reusable workflow and use its outputs
-
+name: Caller Workflow
 on:
-  workflow_dispatch:
-
+ workflow_dispatch:
+   inputs:
+     configuration:
+       description: 'Configuration'
+       required: true
 jobs:
-  job1:
-    uses: ./.github/workflows/test1.yml
-
-  job2:
-    runs-on: ubuntu-latest
-    needs: job1
-    steps:
-      - run: echo ${{ needs.job1.outputs.firstword }} ${{ needs.job1.outputs.secondword }}
+ call_reusable:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Call Reusable Workflow
+       uses: ./.github/workflows/reusable.yml
+       with:
+         configuration: ${{ github.event.inputs.configuration }}
+     - name: Display Output
+       run: echo "Reusable Workflow Output:${{ steps.call_reusable.outputs.hello_output }}"
