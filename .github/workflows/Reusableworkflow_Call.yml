@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
     inputs:
      configuration: 
+        type: boolean
         required: true      
          
 jobs:
