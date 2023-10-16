@@ -6,10 +6,6 @@ on:
      configuration: 
         type: string
         required: true        
-   outputs:
-     firstword:
-        description: "The first output string"
-        value: ${{ jobs.Reusable-workflow.outputs.output1 }}
 jobs:
   Reusable-workflow:
     runs-on: ubuntu-latest
