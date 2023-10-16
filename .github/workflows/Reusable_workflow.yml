@@ -19,7 +19,7 @@ jobs:
      - name: set Output1
        id: step1
        run: |
-        if: [[ "${{inputs.configuration}}" == 'true' ]]; then
+        if "${{inputs.configuration}}" == 'true'; then
         echo "::set-output name=firstword::Hello_World_true"
         else
         echo "::set-output name=firstword::Hello_World_false"
