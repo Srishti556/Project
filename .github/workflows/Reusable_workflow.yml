@@ -17,9 +17,12 @@ jobs:
     steps:
      - name: set Output1
        id: step1
+       env:
+          OUTPUT1: ${{needs.job-1.outputs.output1}}
+          OUTPUT2: ${{needs.job-1.outputs.output2}}
        run: |
         if "${{inputs.configuration}}" == 'true'; then
-        echo "{firstword}={Hello_World_true}" >> $GITHUB_OUTPUT
+        echo "::set-output name=firstword::Hello_World_True"
         else
-        echo "{firstword}={Hello_World_false}" >> $GITHUB_OUTPUT
+        echo "::set-output name=firstword::Hello_World_False"
         fi
