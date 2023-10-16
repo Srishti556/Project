@@ -4,7 +4,7 @@ on:
   workflow_call:
    inputs:
      configuration: 
-        type: boolean
+        type: string
         required: true        
    outputs:
      firstword:
@@ -19,7 +19,7 @@ jobs:
      - name: set Output1
        id: step1
        run: |
-        if: ${{ inputs.configuration }} == true ;
+        if: [[ "${{inputs.configuration}}" == 'true' ]]; then
         echo "firstword=hello_world_true" >> "$GITHUB_OUTPUT"
         else
         echo "firstword=hello_world_false" >> "$GITHUB_OUTPUT"
