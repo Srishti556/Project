@@ -5,7 +5,10 @@ on:
    inputs:
      configuration: 
         type: string
-        required: true        
+        required: true  
+   outputs:
+     firstword:
+        value: ${{ jobs.Reusable-workflow.outputs.output1 }}
 jobs:
   Reusable-workflow:
     runs-on: ubuntu-latest
