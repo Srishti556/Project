@@ -10,7 +10,7 @@ jobs:
    runs-on: ubuntu-latest
    steps:
      - name: Call Reusable Workflow
-       uses: ./.github/workflows/reusable.yml
+       uses: ./.github/workflows/test1.yml
        with:
          configuration: ${{ github.event.inputs.configuration }}
      - name: Display Output
