@@ -1,0 +1,24 @@
+name: EnvironmentSetup Job
+on:
+ workflow_dispatch:
+   inputs:
+     Configuration:
+       description: 'Configuration'
+       required: false
+       default: 'release'
+jobs:
+ deployment:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+     - name: EnvironmentSetup
+       run: |
+         if [ "${{inputs.Configuration }}" == "Release" ]; then
+           echo "Setting environment to Production"
+           environment="Production"
+         else
+           echo "No environment set"
+           environment=""
+         fi
+       id: set-env
+     
