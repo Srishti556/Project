@@ -9,12 +9,13 @@ on:
 jobs:
  deployment:
     runs-on: ubuntu-latest
+    #environment: production
     steps:
      - name: EnvironmentSetup
        run: |
          if [ "${{inputs.Configuration }}" == "release" ]; then
            echo "Setting environment to Production"
-           environment="Production"
+           environment="production"
          else
            echo "No environment set"
            environment=""
