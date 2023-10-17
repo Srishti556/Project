@@ -9,7 +9,6 @@ on:
 jobs:
  deployment:
     runs-on: ubuntu-latest
-    environment: production
     steps:
      - name: EnvironmentSetup
        run: |
@@ -20,5 +19,4 @@ jobs:
            echo "No environment set"
            environment=""
          fi
-       id: set-env
      
