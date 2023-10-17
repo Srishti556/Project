@@ -12,7 +12,7 @@ jobs:
     steps:
      - name: EnvironmentSetup
        run: |
-         if [ "${{inputs.Configuration }}" == "Release" ]; then
+         if [ "${{inputs.Configuration }}" == "release" ]; then
            echo "Setting environment to Production"
            environment="Production"
          else
