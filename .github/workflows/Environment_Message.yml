@@ -30,3 +30,8 @@ jobs:
         - name: Build Message
           run: |
              echo "process Message....."
+    
+   status_message:
+       uses: ./.github/workflows/Environment_Status.yml
+       with:
+          configuration: ${{ inputs.configuration }}
