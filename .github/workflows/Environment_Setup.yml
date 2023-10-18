@@ -27,4 +27,4 @@ jobs:
     runs-on: ubuntu-latest
     needs: production
     steps:
-      - run: echo ${{ needs.call_reusable.outputs.status }}
+      - run: echo ${{ needs.production.outputs.status }}
