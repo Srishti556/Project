@@ -32,6 +32,7 @@ jobs:
              echo "process Message....."
     
    status_message:
+       needs: [build_message,upload_message,process_message]
        uses: ./.github/workflows/Environment_Status.yml
        with:
           configuration: ${{ inputs.configuration }}
