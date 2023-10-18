@@ -9,7 +9,7 @@ on:
 jobs:
   development:
     runs-on: ubuntu-latest    
-    if: ${{inputs.Configuration}} != "release" 
+    if: ${{inputs.Configuration != "release"}}
     steps:
      - name: EnvironmentSetup1
        run: |
