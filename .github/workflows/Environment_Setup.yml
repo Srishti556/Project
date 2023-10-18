@@ -16,7 +16,6 @@ jobs:
   production:
     if: ${{inputs.Configuration == 'release' }}
     runs-on: ubuntu-latest 
-    needs: development
     environment: Production
     steps:
      - name: EnvironmentSetup2
