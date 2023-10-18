@@ -20,4 +20,5 @@ jobs:
     steps:
      - name: EnvironmentSetup2
        uses: ./.github/workflows/Environment_Message.yml
-     
+       with:
+            configuration: ${{ inputs.configuration }}
