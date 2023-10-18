@@ -18,7 +18,7 @@ jobs:
   production:
     runs-on: ubuntu-latest 
     needs: development
-    if: ${{ failure('developement') }}
+    if: ${{ failure() }}
     environment: Production
     steps:
      - name: EnvironmentSetup2
