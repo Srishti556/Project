@@ -19,7 +19,7 @@ jobs:
   development:
     needs: production
     runs-on: ubuntu-latest    
-    if: ${{inputs.Configuration}} != "release"
+    if: ${{ failure() }}
     steps:
      - name: EnvironmentSetup2
        run: |
