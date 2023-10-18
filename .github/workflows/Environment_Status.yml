@@ -1,9 +1,12 @@
 name: Environment Result Status
 on:
- workflow_run:
-   workflows: ["build_message","upload_message","process_message"]
-   types:
-     - completed
+  workflow_call:
+   inputs:
+     Configuration:
+        type: string
+        description: 'Environment Setup'
+        required: true 
+        default: 'release'
 jobs:
  status_Update:
     runs-on: ubuntu-latest
