@@ -10,6 +10,7 @@ on:
 jobs:
  status_Update:
     runs-on: ubuntu-latest
+    
     steps: 
       - name: Get Message workflow Result
         id: result
@@ -24,6 +25,7 @@ jobs:
          fi
  update_Status:
   runs-on: ubuntu-latest
+  needs: status_Update
   steps:
     - name: Status Report
       run: |
