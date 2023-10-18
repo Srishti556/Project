@@ -26,9 +26,9 @@ jobs:
     steps:
       - name: Check Conclusion
         run: |
-         build_conclusion="${{ steps.call_message_workflow.outputs.build_message_conclusion }}"
-         upload_conclusion="${{ steps.call_message_workflow.outputs.upload_message_conclusion }}"
-         process_conclusion="${{ steps.call_message_workflow.outputs.process_message_conclusion }}"
+         build_conclusion="${{ steps.job2.outputs.bmconclusion }}"
+         upload_conclusion="${{ steps.job2.outputs.umconclusion }}"
+         process_conclusion="${{ steps.job2.outputs.pmconclusion }}"
          if [ "$build_conclusion" == "success" ] && [ "$upload_conclusion" == "success" ] && [ "$process_conclusion" == "success" ]; then
            echo "Overall Status: SUCCESS"
          else
