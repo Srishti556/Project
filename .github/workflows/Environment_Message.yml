@@ -19,7 +19,18 @@ jobs:
              echo "Building Message....."
    upload_message:
        runs-on: ubuntu-latest
+       if: ${{inputs.Configuration == 'release' }}
        environment: production
+       needs: build_message
+       outputs:
+         umconclusion: ${{ steps.upload_message.outcome }}
+       steps:
+        - name: Upload Message
+          run: |
+             echo "Uploading Message....."
+   upload:
+       runs-on: ubuntu-latest
+       if: ${{inputs.Configuration == 'release' }}
        needs: build_message
        outputs:
          umconclusion: ${{ steps.upload_message.outcome }}
@@ -36,9 +47,3 @@ jobs:
         - name: Build Message
           run: |
              echo "process Message....."
- #  status_message:
- #      if: ${{ failure() || success() }}
- #      needs: [build_message,upload_message,process_message]
- #      uses: ./.github/workflows/Environment_Status.yml
- #      with:
- #         configuration: ${{ inputs.configuration }}
