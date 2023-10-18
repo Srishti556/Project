@@ -30,7 +30,6 @@ jobs:
              echo "Uploading Message....."
    upload:
        runs-on: ubuntu-latest
-       if: ${{inputs.Configuration == 'release' }}
        needs: build_message
        outputs:
          umconclusion: ${{ steps.upload_message.outcome }}
