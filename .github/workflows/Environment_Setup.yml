@@ -3,6 +3,7 @@ on:
  workflow_dispatch:
    inputs:
      Configuration:
+       type: string
        description: 'Configuration'
        required: true
        default: 'release'
