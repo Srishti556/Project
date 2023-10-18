@@ -9,7 +9,7 @@ on:
 jobs:
   production:
     runs-on: ubuntu-latest    
-    if: ${{inputs.Configuration == "release" }}
+    if: ${{inputs.Configuration}} == "release" 
     environment: Production
     steps:
      - name: EnvironmentSetup1
@@ -19,7 +19,7 @@ jobs:
   development:
     needs: production
     runs-on: ubuntu-latest    
-    if: ${{inputs.Configuration != "release" }}
+    if: ${{inputs.Configuration}} != "release"
     steps:
      - name: EnvironmentSetup2
        run: |
