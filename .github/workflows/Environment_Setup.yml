@@ -15,13 +15,9 @@ jobs:
        run: echo "Setting environment to development"
   production:
     if: ${{inputs.Configuration == 'release' }}
-    runs-on: ubuntu-latest 
-    environment: Production
-    steps:
-     - name: EnvironmentSetup2
-       uses: ./.github/workflows/Environment_Message.yml
-       with:
-            configuration: ${{ inputs.configuration }}
+    uses: ./.github/workflows/Environment_Message.yml
+    with:
+      configuration: ${{ inputs.configuration }}
 
   job2:
     runs-on: ubuntu-latest
