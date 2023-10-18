@@ -1,7 +1,7 @@
 name: Environment Result Status
 on:
  workflow_run:
-   workflows: ["process_message"]
+   workflows: ["build_message","upload_message","process_message"]
    types:
      - completed
 jobs:
