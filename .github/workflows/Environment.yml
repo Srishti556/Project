@@ -1,4 +1,4 @@
-name: EnvironmentSetup Job
+name: EnvironmentSetup
 on:
  workflow_dispatch:
    inputs:
