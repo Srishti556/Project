@@ -3,7 +3,7 @@ name: Environment Message
 on:
   workflow_call:
    inputs:
-     config:
+     Configuration:
         type: string
         description: 'Environment Setup'
         required: true 
