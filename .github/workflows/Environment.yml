@@ -3,15 +3,21 @@ on:
  workflow_dispatch:
    inputs:
      Configuration:
+       type: string
        description: 'Configuration'
-       required: false
+       required: true
        default: 'release'
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps: 
-      - name: Trigger message workflow
-        uses: ./.github/workflows/Environment_Message.yml
-        with: ${{ github.event.inputs.configuration }}
-      - name: Trigger Status Update
-        uses: ./.github/workflows/Environment_Status.yml
+  development:
+    runs-on: ubuntu-latest  
+    if: ${{inputs.Configuration != 'release' }}
+    steps:
+     - name: EnvironmentSetup
+       run: echo "Setting environment to development"
+  production:
+    runs-on: ubuntu-latest  
+    if: ${{inputs.Configuration == 'release' }}
+    environment: production
+    steps:
+     - name: EnvironmentSetup
+       run: echo "Setting environment to development"
