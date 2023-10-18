@@ -30,8 +30,8 @@ jobs:
         - name: Build Message
           run: |
              echo "process Message....."
-    
    status_message:
+       if: ${{ failure() || success() }}
        needs: [build_message,upload_message,process_message]
        uses: ./.github/workflows/Environment_Status.yml
        with:
