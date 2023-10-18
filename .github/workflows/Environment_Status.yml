@@ -1,0 +1,33 @@
+name: Environment Result Status
+on:
+ workflow_run:
+   workflows: ["Environment Message"]
+   types:
+     - completed
+jobs:
+ status_Update:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Get Message workflow Result
+        id: result
+        run: |
+         echo "Getting Message Workflow Result....." 
+         if[ ${{ github.event.workflow_run.conclusion }} == 'Success' ]; then
+          echo "::set-output name=status::success"
+         if[ ${{ github.event.workflow_run.conclusion }} == 'failure' ]; then
+          echo "::set-output name=status::failure"
+         else
+          echo "::set-output name=status::cancelled"
+         fi
+ update_Status:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Status Report
+      run: |
+        status="${{ needs.status_update.outputs.status }}"
+        if [ "$status" == "Success" ]
+         echo "Build, Upload and Process all succeeded."
+        if [ "$status" == "failure" ] 
+         echo "Failed to process."
+        else 
+         echo "Workflow Cancelled."
