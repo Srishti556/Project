@@ -1,0 +1,17 @@
+name: EnvironmentSetup Job
+on:
+ workflow_dispatch:
+   inputs:
+     Configuration:
+       description: 'Configuration'
+       required: false
+       default: 'release'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Trigger message workflow
+        uses: ./.github/workflows/Environment_Message.yml
+        with: ${{ github.event.inputs.configuration }}
+      - name: Trigger Status Update
+        uses: ./.github/workflows/Environment_Status.yml
