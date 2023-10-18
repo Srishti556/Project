@@ -16,9 +16,9 @@ jobs:
         id: result
         run: |
          echo "Getting Message Workflow Result....." 
-         if[ ${{ github.event.workflow_run.conclusion }} == 'Success' ]; then
+         if[ ${{ github.event.workflow_run.conclusion }} == 'Success' ]
           echo "::set-output name=status::success"
-         if[ ${{ github.event.workflow_run.conclusion }} == 'failure' ]; then
+         if[ ${{ github.event.workflow_run.conclusion }} == 'failure' ]
           echo "::set-output name=status::failure"
          else
           echo "::set-output name=status::cancelled"
