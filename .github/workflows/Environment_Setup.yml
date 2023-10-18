@@ -19,5 +19,5 @@ jobs:
            echo "No environment set"
            echo "MY_ENVIRONMENT=" >> $GITHUB_ENV
          fi
-    environment: $MY_ENVIRONMENT
+    environment: ${{MY_ENVIRONMENT}}
      
