@@ -7,17 +7,19 @@ on:
        required: false
        default: 'release'
 jobs:
- set-environment:
+  set-environment:
     runs-on: ubuntu-latest    
+    if: ${{inputs.Configuration }}" == "release"
+    environment: Production
     steps:
      - name: EnvironmentSetup
        run: |
-         if [ "${{inputs.Configuration }}" == "release" ]; then
            echo "Setting environment to Production"
            echo "MY_ENVIRONMENT=Production" >> $GITHUB_ENV
-         else
-           echo "No environment set"
+    else: ${{inputs.Configuration }}" != "release"
+    steps:
+     - name: EnvironmentSetup
+       run: |
+           echo "Setting environment to development"
            echo "MY_ENVIRONMENT=" >> $GITHUB_ENV
-         fi
-    environment: ${{MY_ENVIRONMENT}}
      
