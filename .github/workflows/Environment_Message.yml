@@ -14,7 +14,7 @@ jobs:
        steps:
         - name: Build Message
           run: |
-             Echo "Building Message....."
+             echo "Building Message....."
    upload_message:
        runs-on: ubuntu-latest
        environment: production
@@ -22,11 +22,11 @@ jobs:
        steps:
         - name: Upload Message
           run: |
-             Echo "Uploading Message....."
+             echo "Uploading Message....."
    process_message:
        runs-on: ubuntu-latest
        needs: upload_message
        steps:
         - name: Build Message
           run: |
-             Echo "process Message....."
+             echo "process Message....."
