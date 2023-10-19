@@ -23,11 +23,12 @@ jobs:
    build_message:
        runs-on: ubuntu-latest
        outputs:
-         bmconclusion: ${{ needs.build_message.outcome }}
+         bmconclusion: ${{ steps.Build-Message.outputs.test }}
        steps:
-        - name: Build Message
+        - name: Build-Message
           run: |
              echo "Building Message....."
+             echo "test=success" >> "$GITHUB_OUTPUT"
    upload_message:
        runs-on: ubuntu-latest
        if: ${{inputs.Configuration == 'release' }}
