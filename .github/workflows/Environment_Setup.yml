@@ -25,10 +25,10 @@ jobs:
     steps:
       - name: Check Conclusion
         run: |
-          build_conclusion= ${{needs.development.outputs.bmconclusion}}
+          build_conclusions= ${{needs.development.outputs.bmconclusion}}
           upload_conclusion= ${{needs.development.outputs.uconclusion}}
           process_conclusion= ${{needs.development.outputs.pconclusion}}
-          if [ "$build_conclusion" == "success" ] && [ "$upload_conclusion" == "success" ] && [ "$process_conclusion" == "success" ]; then
+          if [ "$build_conclusions" == "success" ] && [ "$upload_conclusion" == "success" ] && [ "$process_conclusion" == "success" ]; then
            echo "Overall Status: SUCCESS"
           else
            echo "Overall Status: FAILURE"
