@@ -25,11 +25,8 @@ jobs:
     steps:
       - name: Check Conclusion
         run: |
-         if[ ${{ success() }} == true ]; then
-           echo "Overall Status: SUCCESS"
-         else
-           echo "Overall Status: CANCELLED"
-         fi
+          if: ${{ success() }}
+          echo "Overall Status: SUCCESS"
   Production_status:
     runs-on: ubuntu-latest
     needs: production
