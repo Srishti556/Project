@@ -25,13 +25,12 @@ jobs:
     steps:
       - name: Check Conclusion
         run: |
-         build_conclusion= ${{needs.development.outputs.bmconclusion}}
-         upload_conclusion= ${{needs.development.outputs.uconclusion}}
-         process_conclusion= ${{needs.development.outputs.pconclusion}}
-         if [ "$build_conclusion" == "success" ] && [ "$upload_conclusion" == "success" ] && [ "$process_conclusion" == "success" ]; then
+         if: ${{ success() }}
            echo "Overall Status: SUCCESS"
-         else
+         if: ${{ failure() }}
            echo "Overall Status: FAILURE"
+         else: ${{ cancelled() }}
+           echo "Overall Status: CANCELLED"
          fi
   Production_status:
     runs-on: ubuntu-latest
