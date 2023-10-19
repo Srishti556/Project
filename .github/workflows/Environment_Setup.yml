@@ -19,9 +19,23 @@ jobs:
     with:
       configuration: ${{ inputs.configuration }}
 
-  job2:
+  Development_status:
     runs-on: ubuntu-latest
-    needs: [production,development]
+    needs: [development]
+    steps:
+      - name: Check Conclusion
+        run: |
+         build_conclusion="${{ steps.job2.outputs.bmconclusion }}"
+         upload_conclusion="${{ steps.job2.outputs.umconclusion }}"
+         process_conclusion="${{ steps.job2.outputs.pmconclusion }}"
+         if [ "$build_conclusion" == "success" ] && [ "$upload_conclusion" == "success" ] && [ "$process_conclusion" == "success" ]; then
+           echo "Overall Status: SUCCESS"
+         else
+           echo "Overall Status: FAILURE"
+         fi
+  Production_status:
+    runs-on: ubuntu-latest
+    needs: [production]
     steps:
       - name: Check Conclusion
         run: |
