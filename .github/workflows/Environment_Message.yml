@@ -28,7 +28,7 @@ jobs:
         - name: Build-Message
           run: |
              echo "Building Message....."
-             echo "test=success" >> "$GITHUB_OUTPUT"
+             echo "::set-output name=test::success"
    upload_message:
        runs-on: ubuntu-latest
        if: ${{inputs.Configuration == 'release' }}
