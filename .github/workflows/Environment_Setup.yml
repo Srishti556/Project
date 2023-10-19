@@ -27,9 +27,7 @@ jobs:
         run: |
          if: ${{ success() }}
            echo "Overall Status: SUCCESS"
-         if: ${{ failure() }}
-           echo "Overall Status: FAILURE"
-         else: ${{ cancelled() }}
+         else
            echo "Overall Status: CANCELLED"
          fi
   Production_status:
