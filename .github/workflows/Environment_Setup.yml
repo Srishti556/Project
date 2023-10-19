@@ -21,13 +21,13 @@ jobs:
 
   Development_status:
     runs-on: ubuntu-latest
-    needs: [development]
+    needs: development
     steps:
       - name: Check Conclusion
         run: |
-         build_conclusion="${{ steps.development.outputs.bmconclusion }}"
-         upload_conclusion="${{ steps.development.outputs.uconclusion }}"
-         process_conclusion="${{ steps.development.outputs.pconclusion }}"
+         build_conclusion="${{ needs.development.outputs.bmconclusion }}"
+         upload_conclusion="${{ needs.development.outputs.uconclusion }}"
+         process_conclusion="${{ needs.development.outputs.pconclusion }}"
          if [ "$build_conclusion" == "success" ] && [ "$upload_conclusion" == "success" ] && [ "$process_conclusion" == "success" ]; then
            echo "Overall Status: SUCCESS"
          else
@@ -35,13 +35,13 @@ jobs:
          fi
   Production_status:
     runs-on: ubuntu-latest
-    needs: [production]
+    needs: production
     steps:
       - name: Check Conclusion
         run: |
-         build_conclusion="${{ steps.production.outputs.bmconclusion }}"
-         upload_conclusion="${{ steps.production.outputs.umconclusion }}"
-         process_conclusion="${{ steps.production.outputs.pmconclusion }}"
+         build_conclusion="${{ needs.production.outputs.bmconclusion }}"
+         upload_conclusion="${{ needs.production.outputs.umconclusion }}"
+         process_conclusion="${{ needs.production.outputs.pmconclusion }}"
          if [ "$build_conclusion" == "success" ] && [ "$upload_conclusion" == "success" ] && [ "$process_conclusion" == "success" ]; then
            echo "Overall Status: SUCCESS"
          else
