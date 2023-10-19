@@ -40,7 +40,7 @@ jobs:
              echo "Uploading Message....."
    process_message:
        runs-on: ubuntu-latest
-       if: ${{ failure('upload_message' || 'upload') }}
+       if: ${{ success('upload') || success('upload_message') }}
        outputs:
          pmconclusion: ${{ steps.process_message.outcome }}
        steps:
