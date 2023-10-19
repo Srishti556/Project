@@ -10,7 +10,7 @@ on:
         default: 'release'
    outputs:
      bmconclusion:
-        value: ${{ jobs.build_message.outputs.bmconclusion }}   
+        value: ${{ jobs.build_message.outputs.conclusion }}   
      umconclusion:
         value: ${{ jobs.upload_message.outputs.umconclusion }} 
      pmconclusion:
@@ -23,7 +23,7 @@ jobs:
    build_message:
        runs-on: ubuntu-latest
        outputs:
-         bmconclusion: ${{ steps.Build-Message.outputs.test }}
+         conclusion: ${{ steps.Build-Message.outputs.test }}
        steps:
         - name: Build-Message
           run: |
