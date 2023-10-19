@@ -25,9 +25,9 @@ jobs:
     steps:
       - name: Check Conclusion
         run: |
-         build_conclusion="${{ steps.job2.outputs.bmconclusion }}"
-         upload_conclusion="${{ steps.job2.outputs.uconclusion }}"
-         process_conclusion="${{ steps.job2.outputs.pconclusion }}"
+         build_conclusion="${{ steps.Development_status.outputs.bmconclusion }}"
+         upload_conclusion="${{ steps.Development_status.outputs.uconclusion }}"
+         process_conclusion="${{ steps.Development_status.outputs.pconclusion }}"
          if [ "$build_conclusion" == "success" ] && [ "$upload_conclusion" == "success" ] && [ "$process_conclusion" == "success" ]; then
            echo "Overall Status: SUCCESS"
          else
@@ -39,9 +39,9 @@ jobs:
     steps:
       - name: Check Conclusion
         run: |
-         build_conclusion="${{ steps.job2.outputs.bmconclusion }}"
-         upload_conclusion="${{ steps.job2.outputs.umconclusion }}"
-         process_conclusion="${{ steps.job2.outputs.pmconclusion }}"
+         build_conclusion="${{ steps.Production_status.outputs.bmconclusion }}"
+         upload_conclusion="${{ steps.Production_status.outputs.umconclusion }}"
+         process_conclusion="${{ steps.Production_status.outputs.pmconclusion }}"
          if [ "$build_conclusion" == "success" ] && [ "$upload_conclusion" == "success" ] && [ "$process_conclusion" == "success" ]; then
            echo "Overall Status: SUCCESS"
          else
