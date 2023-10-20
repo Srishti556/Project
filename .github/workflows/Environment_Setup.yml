@@ -25,9 +25,9 @@ jobs:
     steps:
       - name: Development Conclusion
         run: |
-          build_conclusions= ${{ needs.development.outputs.bmconclusion }}
-          upload_conclusion= ${{ needs.development.outputs.uconclusion }}
-          process_conclusion= ${{ needs.development.outputs.pconclusion }}
+          build_conclusions= "${{ needs.development.outputs.bmconclusion }}"
+          upload_conclusion= "${{ needs.development.outputs.uconclusion }}"
+          process_conclusion= "${{ needs.development.outputs.pconclusion }}"
           if [ "$build_conclusions" == "success" ] && [ "$upload_conclusion" == "success" ] && [ "$process_conclusion" == "success" ]; then
            echo "Overall Status: SUCCESS"
           else
