@@ -33,13 +33,13 @@ jobs:
          else
            echo "Overall Status: FAILURE"
          fi
-  success_development_status:
+  cancelled_development_status:
      runs-on: ubuntu-latest
      needs: development
-     if: success()
+     if: cancelled()
      steps: 
-       - name: success
-         run: echo "Development function executed successfully."
+       - name: cancel
+         run: echo "The workflow was Cancelled."
   Production_status:
     runs-on: ubuntu-latest
     needs: production
@@ -54,3 +54,10 @@ jobs:
          else
            echo "Overall Status: FAILURE"
          fi
+  cancelled_production_status:
+     runs-on: ubuntu-latest
+     needs: production
+     if: cancelled()
+     steps: 
+       - name: cancel
+         run: echo "The workflow was Cancelled."
