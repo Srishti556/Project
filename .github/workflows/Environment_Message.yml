@@ -26,7 +26,7 @@ jobs:
          bmconclusion: ${{ steps.build.outputs.bmconclusion }}
        steps:
         - id: build
-          run:
+          run:  |
              echo "Building Message....."
              echo "bmconclusion=success" >> $GITHUB_OUTPUT
    upload_message:
