@@ -25,14 +25,15 @@ jobs:
     steps:
       - name: Development Conclusion
         run: |
-          build_conclusions= "${{ needs.development.outputs.bmconclusion }}"
-          upload_conclusion= "${{ needs.development.outputs.uconclusion }}"
-          process_conclusion= "${{ needs.development.outputs.pconclusion }}"
-          if [ "$build_conclusions" == "success" ] && [ "$upload_conclusion" == "success" ] && [ "$process_conclusion" == "success" ]; then
+         build_conclusion="${{ needs.production.outputs.bmconclusion }}"
+         upload_conclusion="${{ needs.production.outputs.umconclusion }}"
+         process_conclusion="${{ needs.production.outputs.pmconclusion }}"
+         if [ "$build_conclusion" == "success" ] && [ "$upload_conclusion" == "success" ] && [ "$process_conclusion" == "success" ]; then
            echo "Overall Status: SUCCESS"
-          else
+         else
            echo "Overall Status: FAILURE"
-          fi
+         fi
+
   Production_status:
     runs-on: ubuntu-latest
     needs: production
