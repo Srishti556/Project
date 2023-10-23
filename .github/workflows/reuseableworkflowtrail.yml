@@ -24,59 +24,44 @@ jobs:
         - id: build
           run:  |
              echo "Building Message....."
+        - name: build
+          run: |
+             echo "Build"
              echo "bmconclusion=success" >> $GITHUB_OUTPUT
-   build:
-      runs-on: ubuntu-latest
-      needs: build_message
-      steps:
-       - name: build
-         run: echo "Build"
-   upload_message:
+   set_environment:
        runs-on: ubuntu-latest
-       needs: build
-       environment: ${{steps.UploadMessage.outputs.umconclusion}}
        outputs:
-         umconclusion: ${{ steps.UploadMessage.outputs.umconclusion }}
          environment: ${{ steps.UploadMessage.outputs.environment }} 
        steps:
+        - name: setEnvironment
+          run: |
+            if{{ inputs.Configuration == 'release' }}
+               echo "environment=production" >> $GITHUB_OUTPUT
+            else
+               echo "environment=" >> $GITHUB_OUTPUT
+   upload_message:
+       runs-on: ubuntu-latest
+       needs: build_message
+       environment: ${{ jobs.set_environment.outputs.environment }}
+       outputs:
+         umconclusion: ${{ steps.UploadMessage.outputs.umconclusion }}
+       steps:
         - id: UploadMessage
-          if: ${{inputs.Configuration == 'release' }}
           run: |
              echo "Uploading Message....."
-             echo "umconclusion=success" >> $GITHUB_OUTPUT
-             echo "environment=production" >> $GITHUB_OUTPUT
         - id: Upload-Message
           run: |
-             echo "Uploading Message....."
+             echo "Upload"
              echo "umconclusion=success" >> $GITHUB_OUTPUT
-             echo "environment=" >> $GITHUB_OUTPUT
-   upload:
-       runs-on: ubuntu-latest
-       if: ${{inputs.Configuration != 'release' }}
-       needs: upload_message
-       outputs:
-         uconclusion: ${{ steps.Upload.outputs.uconclusion }}
-       steps:
-        - id: Upload
-          run: |
-             echo "Uploading Message....."
-             echo "uconclusion=success" >> $GITHUB_OUTPUT
    process_message:
        runs-on: ubuntu-latest
-       needs: upload
+       needs: upload_message
        outputs:
          pmconclusion: ${{ steps.ProcessMessage.outputs.pmconclusion }}
        steps:
         - id: ProcessMessage
           run: |
              echo "process Message....."
-             echo "pmconclusion=success" >> $GITHUB_OUTPUT
-   process:
-       runs-on: ubuntu-latest
-       needs: process_message
-       outputs:
-         pconclusion: ${{ steps.Process.outputs.pconclusion }}
-       steps:
         - id: Process
           run: |
              echo "process Message....."
