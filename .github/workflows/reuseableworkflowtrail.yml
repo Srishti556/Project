@@ -48,6 +48,7 @@ jobs:
        steps:
         - id: UploadMessage
           run: |
+             environment = ${{needs.set_environment.outputs.environment}}
              echo  "$environment"
              echo "Uploading Message....."
         - id: Upload-Message
