@@ -34,8 +34,8 @@ jobs:
          environment: ${{ steps.UploadMessage.outputs.environment }} 
        steps:
         - name: setEnvironment
-          run: |
-            if [[ "${{inputs.Configuration}}" ]] == 'release'; then
+          run: |            
+            if [[ "${{inputs.Configuration}}"  == "release" ]]; then
                echo "environment=production" >> $GITHUB_OUTPUT
             else
                echo "environment=" >> $GITHUB_OUTPUT
