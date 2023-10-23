@@ -35,7 +35,7 @@ jobs:
        steps:
         - name: setEnvironment
           run: |            
-            if [[ "${{inputs.Configuration}}"  == "release" ]]; then
+            if [ "${{inputs.Configuration}}"]  == "release"; then
                echo "environment=production" >> $GITHUB_OUTPUT
    upload_message:
        runs-on: ubuntu-latest
