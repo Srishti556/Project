@@ -34,10 +34,10 @@ jobs:
    upload_message:
        runs-on: ubuntu-latest
        needs: build
+       environment: ${{steps.UploadMessage.outputs.umconclusion}}
        outputs:
          umconclusion: ${{ steps.UploadMessage.outputs.umconclusion }}
          environment: ${{ steps.UploadMessage.outputs.environment }} 
-       environment: ${{environment}}
        steps:
         - id: UploadMessage
           if: ${{inputs.Configuration == 'release' }}
