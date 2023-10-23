@@ -9,7 +9,7 @@ on:
        default: 'release'
 jobs:
   development-production:
-    uses: ./.github/workflows/Environment_Message.yml
+    uses: ./.github/workflows/reuseableworkflowtrail.yml
     with:
       configuration: ${{ inputs.configuration }}
 
