@@ -1,0 +1,36 @@
+name: EnvironmentSetup Job
+on:
+ workflow_dispatch:
+   inputs:
+     Configuration:
+       type: string
+       description: 'Configuration'
+       required: true
+       default: 'release'
+jobs:
+  development-production:
+    uses: ./.github/workflows/Environment_Message.yml
+    with:
+      configuration: ${{ inputs.configuration }}
+
+  status:
+    runs-on: ubuntu-latest
+    needs: development-production
+    steps:
+      - name: Development Conclusion
+        run: |
+         build_conclusion="${{ needs.production.outputs.bmconclusion }}"
+         upload_conclusion="${{ needs.production.outputs.umconclusion }}"
+         process_conclusion="${{ needs.production.outputs.pmconclusion }}"
+         if [ "$build_conclusion" == "success" ] && [ "$upload_conclusion" == "success" ] && [ "$process_conclusion" == "success" ]; then
+           echo "Overall Status: SUCCESS"
+         else
+           echo "Overall Status: FAILURE"
+         fi
+  cancelled_status:
+     runs-on: ubuntu-latest
+     needs: development-production
+     if: cancelled()
+     steps: 
+       - name: cancel
+         run: echo "The workflow was Cancelled."
