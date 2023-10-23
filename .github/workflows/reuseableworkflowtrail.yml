@@ -12,7 +12,9 @@ on:
      bmconclusion:
         value: ${{ jobs.build_message.outputs.bmconclusion }}   
      umconclusion:
-        value: ${{ jobs.upload_message.outputs.umconclusion }} 
+        value: ${{ jobs.upload_development.outputs.umconclusion }}
+     umconclusion:
+        value: ${{ jobs.upload_production.outputs.umconclusion }} 
      pmconclusion:
         value: ${{ jobs.process_message.outputs.pmconclusion }} 
 jobs:
