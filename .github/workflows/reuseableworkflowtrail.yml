@@ -41,8 +41,8 @@ jobs:
                echo "environment=" >> $GITHUB_OUTPUT
    upload_message:
        runs-on: ubuntu-latest
-       needs: build_message
-       environment: ${{ jobs.set_environment.outputs.environment }}
+       needs: [build_message,set_environment]
+       environment: ${{ needs.set_environment.outputs.environment }}
        outputs:
          umconclusion: ${{ steps.UploadMessage.outputs.umconclusion }}
        steps:
