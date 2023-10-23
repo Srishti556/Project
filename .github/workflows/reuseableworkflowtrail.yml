@@ -32,10 +32,10 @@ jobs:
        runs-on: ubuntu-latest
        outputs:
          environment: ${{ steps.UploadMessage.outputs.environment }} 
+       if: ${{inputs.Configuration == 'release' }}
        steps:
         - name: setEnvironment
           run: |            
-            if [ "${{inputs.Configuration}}"]  == "release"; then
                echo "environment=production" >> $GITHUB_OUTPUT
    upload_message:
        runs-on: ubuntu-latest
