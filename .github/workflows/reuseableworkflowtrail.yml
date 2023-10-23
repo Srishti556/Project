@@ -42,14 +42,13 @@ jobs:
    upload_message:
        runs-on: ubuntu-latest
        needs: [build_message,set_environment]
-       environment: 
-           name: $environment
+       environment: $environment
        outputs:
          umconclusion: ${{ steps.UploadMessage.outputs.umconclusion }}
        steps:
         - id: UploadMessage
           run: |
-             echo
+             echo  "$environment"
              echo "Uploading Message....."
         - id: Upload-Message
           run: |
