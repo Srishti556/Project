@@ -37,8 +37,6 @@ jobs:
           run: |            
             if [[ "${{inputs.Configuration}}"  == "release" ]]; then
                echo "environment=production" >> $GITHUB_OUTPUT
-            else
-               echo "No permission required."
    upload_message:
        runs-on: ubuntu-latest
        needs: [build_message,set_environment]
