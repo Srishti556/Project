@@ -6,4 +6,4 @@ jobs:
   Push-Opened:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "The head of this PR starts with 'releases/'"
+      - run: echo "Execute when a pull request is created."
