@@ -9,9 +9,6 @@ on:
        default: 'release'
 jobs:
   development-production:
-    runs-on : ubuntu-latest
-    steps: 
-     - name: call_message
        uses: ./.github/workflows/reuseableworkflowtrail.yml
        with:
           configuration: ${{ inputs.configuration }}
