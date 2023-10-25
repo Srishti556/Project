@@ -19,7 +19,7 @@ jobs:
      needs: development-production
      steps: 
        - name: Success
-         if: ${{ needs.development-production.conclusion == 'success' }}
+         if: ${{ jobs.development-production.conclusion == 'success' }}
          run: 
           echo "The workflow was Success."
        - name: failure
@@ -27,6 +27,6 @@ jobs:
          run: 
           echo "The workflow was failed."
        - name: Cancelled
-         if: ${{ needs.development-production.conclusion == 'cancelled' }}
+         if: ${{ jobs.development-production.conclusion == 'cancelled' }}
          run: 
           echo "The workflow was cancelled."
