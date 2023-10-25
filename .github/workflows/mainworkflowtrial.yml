@@ -19,14 +19,13 @@ jobs:
      needs: development-production
      steps: 
        - name: Success
-         if: ${{ success() && steps.development-production.conclusion == 'success' }}
-         run: 
+         if: ${{ always() }}
+         run: |
+          if [${{ success() && steps.development-production.conclusion == 'success' }}]; then
           echo "The workflow was Success."
-       - name: failure
-         if: ${{ failure() && steps.demo.conclusion == 'failure' }}
-         run: 
+          fi
+          if [${{ always() && steps.development-production.conclusion == 'success' }}]; then
           echo "The workflow was failure."
-       - name: Cancelled
-         if: ${{ cancelled() && steps.development-production.conclusion == 'cancelled' }}
-         run: 
+          else
           echo "The workflow was cancelled."
+          fi
