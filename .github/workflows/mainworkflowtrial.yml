@@ -20,7 +20,7 @@ jobs:
          run: 
           echo "The workflow was Success."
        - name: failure
-         if: ${{ failure('development-production') }}
+         if: ${{ steps.development-production.conclusion == ''failure }}
          run: 
           echo "The workflow was failure."
        - name: Cancelled
