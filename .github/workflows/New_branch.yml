@@ -1,0 +1,12 @@
+name: New Branch Workflow
+
+on:
+ create:
+   branches:
+     - 'release*'
+     - 'fix*'
+jobs:
+ build:
+   runs-on: ubuntu-latest
+   steps: 
+      - run: echo "execute when new branch is created like release-* or fix-*"
