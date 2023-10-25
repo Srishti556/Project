@@ -21,10 +21,10 @@ jobs:
        - name: Success
          if: ${{ always() }}
          run: |
-          if [${{ success() && steps.development-production.conclusion == 'success' }}]; then
+          if [${{ success() }}]; then
           echo "The workflow was Success."
           fi
-          if [${{ always() && steps.development-production.conclusion == 'success' }}]; then
+          if [${{ always() }}]; then
           echo "The workflow was failure."
           else
           echo "The workflow was cancelled."
