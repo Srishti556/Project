@@ -18,6 +18,7 @@ jobs:
         - name: build
           run: |
              echo "Build"
+             exit 1
    upload_production:
        runs-on: ubuntu-latest
        if: ${{inputs.Configuration == 'release' }}
