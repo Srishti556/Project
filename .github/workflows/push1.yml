@@ -1,0 +1,9 @@
+on:
+  pull_request:
+    types:
+      - opened
+jobs:
+  Push-Opened:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "The head of this PR starts with 'releases/'"
