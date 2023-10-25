@@ -16,14 +16,14 @@ jobs:
      runs-on: ubuntu-latest
      steps: 
        - name: Success
-         if: ${{ success('development-production') }}
+         if: ${{ success() && steps.development-production.conclusion == 'success' }}
          run: 
           echo "The workflow was Success."
        - name: failure
-         if: ${{ steps.development-production.conclusion == ''failure }}
+         if: ${{ steps.development-production.conclusion == 'failure' }}
          run: 
           echo "The workflow was failure."
        - name: Cancelled
-         if: ${{ cancelled('development-production') }}
+         if: ${{ cancelled() && steps.development-production.conclusion == 'cancelled' }}
          run: 
           echo "The workflow was cancelled."
