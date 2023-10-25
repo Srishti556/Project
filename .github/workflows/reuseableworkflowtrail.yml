@@ -16,9 +16,7 @@ jobs:
           run:  |
              echo "Building Message....."
         - name: build
-          run: |
-             echo "Build"
-             exit 2
+          run: echo "Build"
    upload_production:
        runs-on: ubuntu-latest
        if: ${{ inputs.Configuration == 'release' }}
