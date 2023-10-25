@@ -1,0 +1,12 @@
+on:
+  pull_request_target:
+    types:
+      - opened
+    branches:
+      - 'releases/**'
+      - 'fix/**'
+jobs:
+  Push-Opened:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "execute when pull request is created for branch like release-* or fix-*"
