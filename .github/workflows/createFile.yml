@@ -1,0 +1,14 @@
+name: Create and Modify file
+
+on:
+ workflow_dispatch:
+     
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create text file
+        run: |
+          echo "Branch Name" > textFile1.txt
+          echo "Run Url" >> textFile1.txt
+      
