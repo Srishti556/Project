@@ -2,7 +2,7 @@ name: Create and Modify file
 
 on:
   push:
-    branches: Srishti-patch-1
+    branches: Srishti556-patch-1
      
 jobs:
   job1:
