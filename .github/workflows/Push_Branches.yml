@@ -3,8 +3,8 @@ on:
     types:
       - opened
     branches:
-      - 'releases/**'
-      - 'fix/**'
+      - 'releases-**'
+      - 'fix-**'
 jobs:
   Push-Opened:
     runs-on: ubuntu-latest
