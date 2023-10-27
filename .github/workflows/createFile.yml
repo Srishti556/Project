@@ -1,7 +1,8 @@
 name: Create and Modify file
 
 on:
-  workflow_dispatch:
+  push:
+    branches: Srishti-patch-1
      
 jobs:
   job1:
