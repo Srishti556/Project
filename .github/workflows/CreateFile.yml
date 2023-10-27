@@ -14,7 +14,7 @@ jobs:
             echo "Run Url:${{ github.repository }}" >> textFile1.txt
        - name: Push text file
          run: |
-            git config --global user.name "Srishti556"
+            git config --global user.name "Project"
             git add textFile1.txt
             git commit -m "Add new file"
             git push origin Srishti556-patch-1
