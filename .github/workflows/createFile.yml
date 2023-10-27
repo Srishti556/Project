@@ -11,4 +11,9 @@ jobs:
         run: |
           echo "Branch Name" > textFile1.txt
           echo "Run Url" >> textFile1.txt
+      - name: Upload file
+        with:
+          name: textFile1
+          path: textFile1.txt
+           
       
