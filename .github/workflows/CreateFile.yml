@@ -13,7 +13,7 @@ jobs:
             echo  "Branch Name: ${{ github.ref }}" > textFile1.txt
             echo "Run Url:${{ github.repository }}" >> textFile1.txt
        - name: Pulish text file
-         run: cp textFile1.txt $GITHUB_WORKSPACE
+         run: cp $GITHUB_WORKSPACE
   Access_text_file:
      needs: Create_text_file
      runs-on: ubuntu-latest
