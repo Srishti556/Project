@@ -9,11 +9,23 @@ jobs:
     steps:
       - name: Create text file
         run: |
-          echo "Branch Name" > textFile1.txt
-          echo "Run Url" >> textFile1.txt
+          echo "Branch Name: ${{ github.ref }}" > textFile1.txt
+          echo "Run Url:${{ github.repository }}" >> textFile1.txt
       - name: Upload file
+        uses: actions/upload-artifact@v2
         with:
           name: textFile1
           path: textFile1.txt
-           
-      
+          
+  access_file:
+    needs: job1
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Text file
+        uses: actions/download-artifact@v2
+        with:
+          name: textFile1
+          path: artifacts
+      - name: display text file content
+        run: cat artifacts/textFile1.txt
