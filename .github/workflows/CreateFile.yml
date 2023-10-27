@@ -12,8 +12,13 @@ jobs:
          run: |
             echo  "Branch Name: ${{ github.ref }}" > textFile1.txt
             echo "Run Url:${{ github.repository }}" >> textFile1.txt
-       - name: Pulish text file
-         run: cp textFile1.txt/$GITHUB_WORKSPACE
+       - name: Push text file
+         run: |
+            git config --global user.email "sharma_srishti@amicusglobal.com"
+            git config --global user.name "Srishti556"
+            git add textFile1.txt
+            git commit -m "Add new file"
+            git push origin Srishti556-patch-1
   Access_text_file:
      needs: Create_text_file
      runs-on: ubuntu-latest
