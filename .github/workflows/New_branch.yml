@@ -1,12 +1,12 @@
 name: New Branch Workflow
 
 on:
- create:
+ push:
    branches:
-     - 'release-*'
-     - 'fix-*'
+     - '*'
 jobs:
  build:
    runs-on: ubuntu-latest
+   if: startsWith(github.ref,'refs/heads/release')
    steps: 
       - run: echo "execute when new branch is created like release-* or fix-*"
