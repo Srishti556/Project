@@ -3,8 +3,8 @@ name: New Branch Workflow
 on:
  create:
    branches:
-     - 'release*'
-     - 'fix*'
+     - 'release-*'
+     - 'fix-*'
 jobs:
  build:
    runs-on: ubuntu-latest
