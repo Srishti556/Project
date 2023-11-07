@@ -3,10 +3,10 @@ on:
     types:
       - opened
     branches:
-      - 'releases-**'
-      - 'fix-**'
+      - '*'
 jobs:
   Push-Opened:
     runs-on: ubuntu-latest
+    if: startsWith(github.ref,'refs/heads/release') || startsWith(github.ref,'refs/heads/fix')
     steps:
       - run: echo "execute when pull request is created for branch like release-* or fix-*"
